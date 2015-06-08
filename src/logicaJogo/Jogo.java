@@ -152,6 +152,18 @@ public class Jogo extends Observable implements Serializable {
                                 && posYDestino <= posYAtual + 1
                                 && !getCarta(i - 1).visivel()) {
                             getCarta(i - 1).setVisibilidade(true);
+                            if(getCarta(i - 1) instanceof Planeta)
+                            {
+                            	for(int l = 0; l <2 ; l++)
+                            	{
+                            		int m = (int) (Math.random() * 3) + 3;
+                            		adicionaRecurso(i-1, l ,m);
+                            	}
+                            }
+                            if(getCarta(i - 1) instanceof PlanetaPirata)
+                            {
+                            	((PlanetaPirata) getCarta(i - 1)).setRecursoVender(new Preto());
+                            }
                         }
                     }
                 }
@@ -205,41 +217,51 @@ public class Jogo extends Observable implements Serializable {
                                 break;
                             }
                         }
-                        switch (k) {
-                            case 1:
-                                ((Planeta) getCarta(i)).setRecursoVender(j, new Branco());
-                                for (int m = 0; m < utilizador.getNumeroCargas(); m++) {
-                                    if (utilizador.getCarga(m) instanceof Preto) {
-                                        utilizador.vendeCarga(m);
-                                        utilizador.retiraDinheiro(utilizador.getDinheiro() - 4);
-                                        acontecimentos.add("Foi confiscado a sua carga ilegal perdeu 4 moedas!");
-                                    }
-                                }
-                                break;
-                            case 2:
-                                ((Planeta) getCarta(i)).setRecursoVender(j, new Branco());
-                                for (int m = 0; m < utilizador.getNumeroCargas(); m++) {
-                                    if (utilizador.getCarga(m) instanceof Preto) {
-                                        utilizador.vendeCarga(m);
-                                        utilizador.retiraDinheiro(utilizador.getDinheiro() - 4);
-                                        acontecimentos.add("Foi confiscado a sua carga ilegal perdeu 4 moedas!");
-                                    }
-                                }
-                                break;
-                            case 3:
-                                ((Planeta) getCarta(i)).setRecursoVender(j, new Amarelo());
-                                break;
-                            case 4:
-                                ((Planeta) getCarta(i)).setRecursoVender(j, new Azul());
-                                break;
-                            case 5:
-                                ((Planeta) getCarta(i)).setRecursoVender(j, new Vermelho());
-                                break;
-                        }
+                        adicionaRecurso(i, j, k);
                     }
                 }
             }
         }
+    }
+    
+    private void adicionaRecurso(int carta,int posicao,int nmrRecurso)
+    {
+    	switch (nmrRecurso) 
+    	{
+    		case 1:
+    			((Planeta) getCarta(carta)).setRecursoVender(posicao, new Branco());
+    			for (int m = 0; m < utilizador.getNumeroCargas(); m++)
+    			{
+    				if (utilizador.getCarga(m) instanceof Preto) 
+    				{
+    					utilizador.vendeCarga(m);
+    					utilizador.retiraDinheiro(utilizador.getDinheiro() - 4);
+    					acontecimentos.add("Foi confiscado a sua carga ilegal perdeu 4 moedas!");
+    				}
+    			}
+        	            break;
+    		case 2:
+    			((Planeta) getCarta(carta)).setRecursoVender(posicao, new Branco());
+    			for (int m = 0; m < utilizador.getNumeroCargas(); m++) 
+    			{
+    				if (utilizador.getCarga(m) instanceof Preto) 
+    				{
+    					utilizador.vendeCarga(m);
+    					utilizador.retiraDinheiro(utilizador.getDinheiro() - 4);
+    					acontecimentos.add("Foi confiscado a sua carga ilegal perdeu 4 moedas!");
+                                    }
+                    	}
+    			break;
+    		case 3:
+    			((Planeta) getCarta(carta)).setRecursoVender(posicao, new Amarelo());
+    			break;
+    		case 4:
+    			((Planeta) getCarta(carta)).setRecursoVender(posicao, new Azul());
+    			break;
+    		case 5:
+    			((Planeta) getCarta(carta)).setRecursoVender(posicao, new Vermelho());
+    			break;
+    	}
     }
 
     public void limparAcontecimento() {
