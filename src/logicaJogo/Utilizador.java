@@ -37,6 +37,10 @@ public class Utilizador implements Serializable {
 
     public void retiraDinheiro(int dinheiro) {
         this.dinheiro -= dinheiro;
+        
+        if(this.dinheiro < 0) {
+    		this.dinheiro = 0;
+    	}
     }
 
     public void incrementaArma() {
