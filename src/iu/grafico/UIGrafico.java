@@ -327,7 +327,7 @@ public class UIGrafico extends JFrame implements Observer {
 		jLblCliqueNaCartaMover.setBounds(45, 80, 280, 15);
 		jCardMover.add(jLblCliqueNaCartaMover);
 
-		jBtnMoverFinalizar = new JButton("Finalisar Movimento");
+		jBtnMoverFinalizar = new JButton("Finalizar Movimento");
 		jBtnMoverFinalizar.setBounds(106, 168, 175, 25);
 		jCardMover.add(jBtnMoverFinalizar);
 
