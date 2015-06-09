@@ -1,8 +1,9 @@
 package iu.grafico;
 
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -37,6 +38,7 @@ public class UIGrafico extends JFrame implements Observer {
 	private JButton miBtnCarregarJogo = new JButton("Carregar Jogo");
 	private JButton miBtnSair = new JButton("Sair");
 	private JLabel miLblImagem = new JLabel("");
+	private JLabel miLblAutor = new JLabel("");
 
 // Componentes Pagina do jogo - j
 	protected JPanel jPanel;
@@ -103,9 +105,10 @@ public class UIGrafico extends JFrame implements Observer {
 		inicializaMenuIniciar();
 		
 		registarListenersMI();
-
+		//setUndecorated(true); //True fullscrean
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		setBounds(0,0,screenSize.width, screenSize.height);
 		setVisible(true);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		validate();
@@ -114,21 +117,27 @@ public class UIGrafico extends JFrame implements Observer {
 	protected void inicializaMenuIniciar() 
 	{
 		jogo=new Jogo();
-		miPanel.setLayout(new BorderLayout());
+		miPanel.setLayout(null);
 		miPanel.setBackground(Color.WHITE);
 
-		miBtnInciarJogo.setBounds(510, 289, 349, 50);
+		miBtnInciarJogo.setBounds(510, 418, 349, 50);
 		miPanel.add(miBtnInciarJogo);
 
-		miBtnCarregarJogo.setBounds(510, 438, 349, 50);
+		miBtnCarregarJogo.setBounds(510, 498, 349, 50);
 		miPanel.add(miBtnCarregarJogo);
 		
 		miBtnSair.setBounds(510, 578, 349, 50);
 		miPanel.add(miBtnSair);
 
-		miLblImagem.setBounds(31, 11, 393, 34);
+		miLblImagem.setBounds(450, 150, 500, 150);
+		miLblImagem.setIcon(new ImageIcon(new ImageIcon("./Imagens/Titulo.png").getImage().getScaledInstance(500, 150, 100)));
 		miPanel.add(miLblImagem);
 		
+		miLblAutor.setBounds(50, 578, 250, 75);
+		miLblAutor.setText(new String("<html>Trabalho Realizado Por:<br><br>André Pinho - 21210411<br>André Rodrigues - 21210368</html>"));
+		miPanel.add(miLblAutor);
+		
+		miPanel.revalidate();
 		
 		setContentPane(miPanel);
 	}
@@ -215,7 +224,7 @@ public class UIGrafico extends JFrame implements Observer {
 		jPanel.add(jBtnSair);
 
 		jCards = new JPanel();
-		jCards.setBounds(968, 344, 382, 227);
+		jCards.setBounds(968, 344, 372, 227);
 		jPanel.add(jCards);
 		jCards.setLayout(new CardLayout(0, 0));
 
