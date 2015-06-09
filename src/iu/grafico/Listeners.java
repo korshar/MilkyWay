@@ -124,7 +124,7 @@ public class Listeners {
         		uiGrafico.jogo.venda(0);
         	if(e.getSource() == uiGrafico.jBtnVenderCarga2)
         		uiGrafico.jogo.venda(1);
-        	if(e.getSource() == uiGrafico.jBtnVenderCarga3)
+        	if(e.getSource() == uiGrafico.jBtnVenderCarga3 && uiGrafico.jogo.getUtilizador().getNumeroCargas() == 3) 
         		uiGrafico.jogo.venda(2);
         }
     }

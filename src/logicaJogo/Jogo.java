@@ -235,8 +235,16 @@ public class Jogo extends Observable implements Serializable {
     				if (utilizador.getCarga(m) instanceof Preto) 
     				{
     					utilizador.vendeCarga(m);
-    					utilizador.retiraDinheiro(4);
-    					acontecimentos.add("Foi confiscado a sua carga ilegal perdeu 4 moedas!");
+    					
+    					if(utilizador.getDinheiro() < 4) {
+    						utilizador.retiraDinheiro(utilizador.getDinheiro());
+    						acontecimentos.add("Foi confiscado a sua carga ilegal perdeu " + utilizador.getDinheiro() + " moedas!");
+    					}
+    					else {
+    						
+    						utilizador.retiraDinheiro(4);
+    						acontecimentos.add("Foi confiscado a sua carga ilegal perdeu 4 moedas!");
+    					}
     				}
     			}
         	            break;
@@ -247,10 +255,17 @@ public class Jogo extends Observable implements Serializable {
     				if (utilizador.getCarga(m) instanceof Preto) 
     				{
     					utilizador.vendeCarga(m);
-    					utilizador.retiraDinheiro(4);
-    					acontecimentos.add("Foi confiscado a sua carga ilegal perdeu 4 moedas!");
-                                    }
-                    	}
+    					
+    					if(utilizador.getDinheiro() < 4) {
+    						utilizador.retiraDinheiro(utilizador.getDinheiro());
+    						acontecimentos.add("Foi confiscado a sua carga ilegal perdeu " + utilizador.getDinheiro() + " moedas!");
+    					}
+    					else {
+    						utilizador.retiraDinheiro(4);
+    						acontecimentos.add("Foi confiscado a sua carga ilegal perdeu 4 moedas!");
+    					}
+                      }
+                  }
     			break;
     		case 3:
     			((Planeta) getCarta(carta)).setRecursoVender(posicao, new Amarelo());
