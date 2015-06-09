@@ -115,18 +115,20 @@ public class UIGrafico extends JFrame implements Observer {
 	{
 		jogo=new Jogo();
 		miPanel.setLayout(new BorderLayout());
+		miPanel.setBackground(Color.WHITE);
 
-		miBtnInciarJogo.setBounds(510, 139, 349, 50);
+		miBtnInciarJogo.setBounds(510, 289, 349, 50);
 		miPanel.add(miBtnInciarJogo);
 
-		miBtnCarregarJogo.setBounds(510, 288, 349, 50);
+		miBtnCarregarJogo.setBounds(510, 438, 349, 50);
 		miPanel.add(miBtnCarregarJogo);
 		
-		miBtnSair.setBounds(510, 428, 349, 50);
+		miBtnSair.setBounds(510, 578, 349, 50);
 		miPanel.add(miBtnSair);
 
 		miLblImagem.setBounds(31, 11, 393, 34);
 		miPanel.add(miLblImagem);
+		
 		
 		setContentPane(miPanel);
 	}
